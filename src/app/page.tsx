@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const features = [
   "Registro de clientes del gimnasio",
   "Control de pagos y vencimientos",
@@ -20,6 +22,12 @@ export default function Home() {
             clientes, controlar pagos y mantener actualizada la información que
             desbloquea el acceso premium en la app móvil.
           </p>
+          <Link
+            href="/dashboard"
+            className="mt-8 inline-flex rounded-xl bg-lime-400 px-6 py-3 text-sm font-bold text-neutral-950 transition hover:bg-lime-300"
+          >
+            Entrar al panel
+          </Link>
         </div>
 
         <div className="mt-12 grid gap-4 md:grid-cols-3">
@@ -32,11 +40,6 @@ export default function Home() {
               <h2 className="text-lg font-semibold">{feature}</h2>
             </div>
           ))}
-        </div>
-
-        <div className="mt-12 rounded-2xl border border-lime-400/30 bg-lime-400/10 p-6 text-sm leading-7 text-lime-50">
-          Siguiente fase: conectar Supabase, crear autenticación para
-          trabajadores y construir el módulo de clientes.
         </div>
       </section>
     </main>

@@ -46,6 +46,20 @@ Tablas iniciales:
 - `memberships`: pagos, planes y vencimientos.
 - `active_memberships`: vista para validar acceso premium desde la app.
 
+Migraciones:
+
+- `001_initial_schema.sql`: estructura inicial de datos.
+- `002_security_policies.sql`: base inicial de Row Level Security.
+
+## Rutas iniciales
+
+```txt
+/              Landing interna del proyecto
+/dashboard     Resumen administrativo
+/clientes      Gestión visual de clientes
+/membresias    Control visual de pagos y vencimientos
+```
+
 ## Desarrollo local
 
 ```bash
