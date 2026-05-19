@@ -26,6 +26,17 @@ export type CreateClientState = {
   message: string;
 };
 
+function getSafeSupabaseError(error: unknown) {
+  if (!error || typeof error !== "object") return "Error desconocido de Supabase.";
+
+  const record = error as Record<string, unknown>;
+  const code = typeof record.code === "string" ? record.code : null;
+  const message = typeof record.message === "string" ? record.message : null;
+  const details = typeof record.details === "string" ? record.details : null;
+
+  return [code, message, details].filter(Boolean).join(" | ");
+}
+
 export async function createClientWithMembership(
   _previousState: CreateClientState,
   formData: FormData,
@@ -45,7 +56,17 @@ export async function createClientWithMembership(
   }
 
   const expiresAt = addMonths(paidAt, durationMonths);
-  const supabase = createServerSupabaseClient() as unknown as SupabaseWriteClient;
+  let supabase: SupabaseWriteClient;
+
+  try {
+    supabase = createServerSupabaseClient() as unknown as SupabaseWriteClient;
+  } catch (error) {
+    console.error("Missing Supabase server env", error);
+    return {
+      ok: false,
+      message: "Falta configurar SUPABASE_SERVICE_ROLE_KEY en Vercel.",
+    };
+  }
 
   const { data: client, error: clientError } = await supabase
     .from("clients")
@@ -66,7 +87,7 @@ export async function createClientWithMembership(
     console.error("Error creating client", clientError);
     return {
       ok: false,
-      message: "No se pudo guardar el cliente. Revisa Supabase o las variables de entorno.",
+      message: `No se pudo guardar el cliente: ${getSafeSupabaseError(clientError)}`,
     };
   }
 
@@ -83,7 +104,7 @@ export async function createClientWithMembership(
     console.error("Error creating membership", membershipError);
     return {
       ok: false,
-      message: "El cliente se guardó, pero no se pudo crear la membresía.",
+      message: `El cliente se guardó, pero no se pudo crear la membresía: ${getSafeSupabaseError(membershipError)}`,
     };
   }
 
