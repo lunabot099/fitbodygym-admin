@@ -1,14 +1,19 @@
 import Link from "next/link";
-import { clients, dashboardStats } from "@/lib/mock-data";
+import { getClients, getDashboardStats } from "@/lib/admin-data";
 
-const cards = [
-  { label: "Clientes activos", value: dashboardStats.activeClients },
-  { label: "Por vencer", value: dashboardStats.expiringSoon },
-  { label: "Vencidas", value: dashboardStats.overdueMemberships },
-  { label: "Ingresos del mes", value: `$${dashboardStats.monthlyRevenue}` },
-];
+export default async function DashboardPage() {
+  const [clients, dashboardStats] = await Promise.all([
+    getClients(),
+    getDashboardStats(),
+  ]);
 
-export default function DashboardPage() {
+  const cards = [
+    { label: "Clientes activos", value: dashboardStats.activeClients },
+    { label: "Por vencer", value: dashboardStats.expiringSoon },
+    { label: "Vencidas", value: dashboardStats.overdueMemberships },
+    { label: "Ingresos del mes", value: `$${dashboardStats.monthlyRevenue}` },
+  ];
+
   return (
     <div className="mx-auto max-w-7xl">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

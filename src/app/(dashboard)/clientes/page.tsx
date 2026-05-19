@@ -1,6 +1,8 @@
-import { clients } from "@/lib/mock-data";
+import { getClients } from "@/lib/admin-data";
 
-export default function ClientsPage() {
+export default async function ClientsPage() {
+  const clients = await getClients();
+
   return (
     <div className="mx-auto max-w-7xl">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

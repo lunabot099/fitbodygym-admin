@@ -1,6 +1,8 @@
-import { clients } from "@/lib/mock-data";
+import { getClients } from "@/lib/admin-data";
 
-export default function MembershipsPage() {
+export default async function MembershipsPage() {
+  const clients = await getClients();
+
   return (
     <div className="mx-auto max-w-7xl">
       <div>

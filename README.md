@@ -28,9 +28,12 @@ Copia `.env.example` a `.env.local` y configura:
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
 ```
 
 No subas `.env.local` al repositorio.
+
+`SUPABASE_SERVICE_ROLE_KEY` es privada y solo debe configurarse como variable de servidor en local/Vercel. No debe exponerse en el navegador ni pegarse en chats.
 
 ## Base de datos inicial
 
