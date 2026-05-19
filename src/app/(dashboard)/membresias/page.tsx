@@ -1,3 +1,4 @@
+import { formatDateForElSalvador } from "@/lib/dates/format";
 import { getClients } from "@/lib/admin-data";
 
 export default async function MembershipsPage() {
@@ -35,8 +36,12 @@ export default async function MembershipsPage() {
                   <tr key={client.id}>
                     <td className="px-4 py-3 font-medium">{client.full_name}</td>
                     <td className="px-4 py-3">{membership?.plan_name ?? "-"}</td>
-                    <td className="px-4 py-3 text-neutral-600">{membership?.paid_at ?? "-"}</td>
-                    <td className="px-4 py-3 text-neutral-600">{membership?.expires_at ?? "-"}</td>
+                    <td className="px-4 py-3 text-neutral-600">
+                      {formatDateForElSalvador(membership?.paid_at)}
+                    </td>
+                    <td className="px-4 py-3 text-neutral-600">
+                      {formatDateForElSalvador(membership?.expires_at)}
+                    </td>
                     <td className="px-4 py-3">{membership?.amount ? `$${membership.amount}` : "-"}</td>
                     <td className="px-4 py-3">
                       <span className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-700">

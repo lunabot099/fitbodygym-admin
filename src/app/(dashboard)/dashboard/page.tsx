@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { formatDateForElSalvador } from "@/lib/dates/format";
 import { getClients, getDashboardStats } from "@/lib/admin-data";
 
 export default async function DashboardPage() {
@@ -63,7 +64,9 @@ export default async function DashboardPage() {
                   <td className="px-4 py-3 font-medium">{client.full_name}</td>
                   <td className="px-4 py-3 text-neutral-600">{client.email}</td>
                   <td className="px-4 py-3">{client.current_membership?.plan_name ?? "Sin plan"}</td>
-                  <td className="px-4 py-3">{client.current_membership?.expires_at ?? "-"}</td>
+                  <td className="px-4 py-3">
+                    {formatDateForElSalvador(client.current_membership?.expires_at)}
+                  </td>
                 </tr>
               ))}
             </tbody>

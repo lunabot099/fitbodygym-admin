@@ -1,3 +1,5 @@
+import { QuickClientForm } from "@/components/clients/quick-client-form";
+import { formatDateForElSalvador } from "@/lib/dates/format";
 import { getClients } from "@/lib/admin-data";
 
 export default async function ClientsPage() {
@@ -45,7 +47,11 @@ export default async function ClientsPage() {
                         {client.status}
                       </span>
                     </td>
-                    <td className="px-4 py-3">{client.current_membership?.expires_at ?? "Sin membresía"}</td>
+                    <td className="px-4 py-3">
+                      {client.current_membership?.expires_at
+                        ? formatDateForElSalvador(client.current_membership.expires_at)
+                        : "Sin membresía"}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -53,32 +59,7 @@ export default async function ClientsPage() {
           </div>
         </div>
 
-        <form className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
-          <h2 className="text-xl font-bold">Registro rápido</h2>
-          <p className="mt-2 text-sm text-neutral-600">
-            Esta primera versión deja listo el formulario visual. La conexión real se hará con Supabase.
-          </p>
-          <div className="mt-5 space-y-4">
-            {[
-              ["Nombre completo", "Ej. Juan Pérez"],
-              ["Correo", "cliente@email.com"],
-              ["Teléfono", "+503 ..."],
-              ["Plan", "Mensual"],
-              ["Fecha de vencimiento", "2026-06-19"],
-            ].map(([label, placeholder]) => (
-              <label key={label} className="block">
-                <span className="text-sm font-medium text-neutral-700">{label}</span>
-                <input
-                  placeholder={placeholder}
-                  className="mt-2 w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm outline-none transition focus:border-red-600 focus:ring-4 focus:ring-red-600/10"
-                />
-              </label>
-            ))}
-          </div>
-          <button className="mt-6 w-full rounded-xl bg-red-600 px-5 py-3 text-sm font-bold text-neutral-950 transition hover:bg-red-500">
-            Guardar cliente
-          </button>
-        </form>
+        <QuickClientForm />
       </section>
     </div>
   );
