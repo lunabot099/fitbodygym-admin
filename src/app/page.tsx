@@ -11,7 +11,7 @@ export default function Home() {
     <main className="min-h-screen bg-neutral-950 text-white">
       <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center px-6 py-16">
         <div className="max-w-3xl">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-lime-400">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-red-500">
             FitBodyGym Admin
           </p>
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
@@ -24,7 +24,7 @@ export default function Home() {
           </p>
           <Link
             href="/dashboard"
-            className="mt-8 inline-flex rounded-xl bg-lime-400 px-6 py-3 text-sm font-bold text-neutral-950 transition hover:bg-lime-300"
+            className="mt-8 inline-flex rounded-xl bg-red-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-red-600"
           >
             Entrar al panel
           </Link>
@@ -36,7 +36,7 @@ export default function Home() {
               key={feature}
               className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-2xl shadow-black/20"
             >
-              <div className="mb-4 h-2 w-10 rounded-full bg-lime-400" />
+              <div className="mb-4 h-2 w-10 rounded-full bg-red-500" />
               <h2 className="text-lg font-semibold">{feature}</h2>
             </div>
           ))}

@@ -10,7 +10,7 @@ export function Sidebar() {
   return (
     <aside className="hidden min-h-screen w-72 border-r border-white/10 bg-neutral-950 px-6 py-8 text-white lg:block">
       <Link href="/dashboard" className="block">
-        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-lime-400">
+        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-red-500">
           FitBodyGym
         </p>
         <h1 className="mt-3 text-2xl font-bold">Admin</h1>

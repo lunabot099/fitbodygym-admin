@@ -7,7 +7,7 @@ export default async function ClientsPage() {
     <div className="mx-auto max-w-7xl">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-lime-700">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">
             Gestión del gimnasio
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight">Clientes</h1>
@@ -41,7 +41,7 @@ export default async function ClientsPage() {
                     <td className="px-4 py-3 text-neutral-600">{client.email}</td>
                     <td className="px-4 py-3 text-neutral-600">{client.phone}</td>
                     <td className="px-4 py-3">
-                      <span className="rounded-full bg-lime-100 px-3 py-1 text-xs font-semibold text-lime-800">
+                      <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700">
                         {client.status}
                       </span>
                     </td>
@@ -70,12 +70,12 @@ export default async function ClientsPage() {
                 <span className="text-sm font-medium text-neutral-700">{label}</span>
                 <input
                   placeholder={placeholder}
-                  className="mt-2 w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm outline-none transition focus:border-lime-500 focus:ring-4 focus:ring-lime-500/10"
+                  className="mt-2 w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm outline-none transition focus:border-red-600 focus:ring-4 focus:ring-red-600/10"
                 />
               </label>
             ))}
           </div>
-          <button className="mt-6 w-full rounded-xl bg-lime-500 px-5 py-3 text-sm font-bold text-neutral-950 transition hover:bg-lime-400">
+          <button className="mt-6 w-full rounded-xl bg-red-600 px-5 py-3 text-sm font-bold text-neutral-950 transition hover:bg-red-500">
             Guardar cliente
           </button>
         </form>

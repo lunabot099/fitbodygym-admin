@@ -18,7 +18,7 @@ export default async function DashboardPage() {
     <div className="mx-auto max-w-7xl">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-lime-700">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">
             Panel administrativo
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight">Resumen</h1>
@@ -43,7 +43,7 @@ export default async function DashboardPage() {
       <section className="mt-8 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold">Clientes recientes</h2>
-          <Link href="/clientes" className="text-sm font-semibold text-lime-700 hover:text-lime-800">
+          <Link href="/clientes" className="text-sm font-semibold text-red-600 hover:text-red-700">
             Ver todos
           </Link>
         </div>
