@@ -48,6 +48,40 @@ export async function createProduct(_prev: State, formData: FormData): Promise<S
   return { ok: true, message: "Producto creado." };
 }
 
+export async function addProductStock(_prev: State, formData: FormData): Promise<State> {
+  const productId = String(formData.get("product_id") ?? "");
+  const quantity = Number(formData.get("quantity") ?? 0);
+  const notes = String(formData.get("notes") ?? "").trim();
+
+  if (!productId || quantity <= 0) return { ok: false, message: "Selecciona producto y cantidad válida." };
+
+  const supabase = createServerSupabaseClient() as unknown as Db;
+  const { data: product, error: productError } = await supabase
+    .from("products")
+    .select("id, name, price, stock")
+    .eq("id", productId)
+    .single();
+
+  if (productError || !product) return { ok: false, message: `Producto no encontrado: ${err(productError)}` };
+
+  const { error: stockError } = await supabase
+    .from("products")
+    .update({ stock: Number(product.stock) + quantity, updated_at: new Date().toISOString() })
+    .eq("id", product.id);
+
+  if (stockError) return { ok: false, message: `No se pudo actualizar existencia: ${err(stockError)}` };
+
+  await supabase.from("inventory_movements").insert({
+    product_id: product.id,
+    type: "purchase",
+    quantity,
+    notes: notes || "Entrada de producto",
+  });
+
+  revalidatePath("/ventas");
+  return { ok: true, message: `Se agregaron ${quantity} unidad(es) a ${product.name}.` };
+}
+
 export async function registerSale(_prev: State, formData: FormData): Promise<State> {
   const productId = String(formData.get("product_id") ?? "");
   const quantity = Number(formData.get("quantity") ?? 1);

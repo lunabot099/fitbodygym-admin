@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 
 import { ProductForm } from "@/components/sales/product-form";
 import { SaleForm } from "@/components/sales/sale-form";
+import { StockForm } from "@/components/sales/stock-form";
 import { getProducts, getTodaySales } from "@/lib/sales-data";
 
 export default async function SalesPage() {
@@ -22,10 +23,10 @@ export default async function SalesPage() {
             <h2 className="text-xl font-bold">Productos</h2>
             <div className="mt-5 overflow-hidden rounded-xl border border-neutral-200">
               <table className="w-full text-left text-sm">
-                <thead className="bg-neutral-50 text-neutral-500"><tr><th className="px-4 py-3">Producto</th><th className="px-4 py-3">Categoría</th><th className="px-4 py-3">Precio</th><th className="px-4 py-3">Stock</th></tr></thead>
+                <thead className="bg-neutral-50 text-neutral-500"><tr><th className="px-4 py-3">Producto</th><th className="px-4 py-3">Categoría</th><th className="px-4 py-3">Precio</th><th className="px-4 py-3">Stock actual</th><th className="px-4 py-3">Estado</th></tr></thead>
                 <tbody className="divide-y divide-neutral-200">
-                  {products.map((p) => <tr key={p.id}><td className="px-4 py-3 font-medium">{p.name}</td><td className="px-4 py-3 text-neutral-600">{p.category}</td><td className="px-4 py-3">${Number(p.price).toFixed(2)}</td><td className={`px-4 py-3 font-semibold ${p.stock <= p.min_stock ? "text-red-600" : "text-neutral-900"}`}>{p.stock}</td></tr>)}
-                  {products.length === 0 ? <tr><td colSpan={4} className="px-4 py-10 text-center text-neutral-500">Aún no hay productos.</td></tr> : null}
+                  {products.map((p) => <tr key={p.id}><td className="px-4 py-3 font-medium">{p.name}</td><td className="px-4 py-3 text-neutral-600">{p.category}</td><td className="px-4 py-3">${Number(p.price).toFixed(2)}</td><td className={`px-4 py-3 font-semibold ${p.stock <= p.min_stock ? "text-red-600" : "text-neutral-900"}`}>{p.stock}</td><td className="px-4 py-3">{p.stock <= p.min_stock ? <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700">Comprar pronto</span> : <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">Bien</span>}</td></tr>)}
+                  {products.length === 0 ? <tr><td colSpan={5} className="px-4 py-10 text-center text-neutral-500">Aún no hay productos.</td></tr> : null}
                 </tbody>
               </table>
             </div>
@@ -48,6 +49,7 @@ export default async function SalesPage() {
 
         <div className="space-y-6">
           <SaleForm products={products.filter((p) => p.active && p.stock > 0)} />
+          <StockForm products={products.filter((p) => p.active)} />
           <ProductForm />
         </div>
       </section>
