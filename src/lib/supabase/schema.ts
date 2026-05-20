@@ -67,6 +67,51 @@ export type Database = {
           updated_at?: string;
         };
       };
+      receipts: {
+        Row: {
+          id: string;
+          receipt_number: string;
+          client_id: string;
+          membership_id: string | null;
+          client_name: string;
+          client_email: string;
+          client_phone: string | null;
+          plan_name: string;
+          paid_at: string;
+          expires_at: string;
+          amount: number | null;
+          issued_at: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          receipt_number: string;
+          client_id: string;
+          membership_id?: string | null;
+          client_name: string;
+          client_email: string;
+          client_phone?: string | null;
+          plan_name: string;
+          paid_at: string;
+          expires_at: string;
+          amount?: number | null;
+          issued_at?: string;
+          created_at?: string;
+        };
+        Update: {
+          receipt_number?: string;
+          client_id?: string;
+          membership_id?: string | null;
+          client_name?: string;
+          client_email?: string;
+          client_phone?: string | null;
+          plan_name?: string;
+          paid_at?: string;
+          expires_at?: string;
+          amount?: number | null;
+          issued_at?: string;
+        };
+      };
     };
     Views: {
       active_memberships: {

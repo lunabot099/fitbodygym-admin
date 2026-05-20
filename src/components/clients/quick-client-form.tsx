@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useMemo, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { createClientWithMembership } from "@/app/(dashboard)/clientes/actions";
@@ -97,9 +98,26 @@ export function QuickClientForm() {
       </div>
 
       {state.message ? (
-        <p className={`mt-4 rounded-xl px-4 py-3 text-sm font-medium ${state.ok ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}>
-          {state.message}
-        </p>
+        <div className={`mt-4 rounded-xl px-4 py-3 text-sm font-medium ${state.ok ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}>
+          <p>{state.message}</p>
+          {state.ok && state.receiptId ? (
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Link
+                href={`/comprobantes/${state.receiptId}`}
+                className="rounded-lg bg-neutral-950 px-4 py-2 text-xs font-bold text-white hover:bg-neutral-800"
+              >
+                Ver comprobante
+              </Link>
+              <Link
+                href={`/comprobantes/${state.receiptId}`}
+                target="_blank"
+                className="rounded-lg border border-neutral-300 px-4 py-2 text-xs font-bold text-neutral-800 hover:bg-white"
+              >
+                Abrir para imprimir
+              </Link>
+            </div>
+          ) : null}
+        </div>
       ) : null}
 
       <SubmitButton />
