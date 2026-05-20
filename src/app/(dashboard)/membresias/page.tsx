@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { formatDateForElSalvador } from "@/lib/dates/format";
 import { getClients } from "@/lib/admin-data";
 

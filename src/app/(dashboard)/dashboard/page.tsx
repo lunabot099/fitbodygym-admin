@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import { formatDateForElSalvador } from "@/lib/dates/format";
 import { getClients, getDashboardStats } from "@/lib/admin-data";

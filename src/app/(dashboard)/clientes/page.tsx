@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { ClientsTable } from "@/components/clients/clients-table";
 import { QuickClientForm } from "@/components/clients/quick-client-form";
 import { getClients } from "@/lib/admin-data";
