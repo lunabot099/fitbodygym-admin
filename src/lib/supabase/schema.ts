@@ -67,11 +67,38 @@ export type Database = {
           updated_at?: string;
         };
       };
+      day_passes: {
+        Row: {
+          id: string;
+          visitor_name: string | null;
+          phone: string | null;
+          visit_date: string;
+          amount: number;
+          receipt_id: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          visitor_name?: string | null;
+          phone?: string | null;
+          visit_date?: string;
+          amount?: number;
+          receipt_id?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          visitor_name?: string | null;
+          phone?: string | null;
+          visit_date?: string;
+          amount?: number;
+          receipt_id?: string | null;
+        };
+      };
       receipts: {
         Row: {
           id: string;
           receipt_number: string;
-          client_id: string;
+          client_id: string | null;
           membership_id: string | null;
           client_name: string;
           client_email: string;
@@ -86,7 +113,7 @@ export type Database = {
         Insert: {
           id?: string;
           receipt_number: string;
-          client_id: string;
+          client_id?: string | null;
           membership_id?: string | null;
           client_name: string;
           client_email: string;
@@ -100,7 +127,7 @@ export type Database = {
         };
         Update: {
           receipt_number?: string;
-          client_id?: string;
+          client_id?: string | null;
           membership_id?: string | null;
           client_name?: string;
           client_email?: string;
