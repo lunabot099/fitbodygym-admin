@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 
 import Link from "next/link";
 import { DayPassForm } from "@/components/day-passes/day-pass-form";
+import { FacialAccessDemo } from "@/components/day-passes/facial-access-demo";
 import { formatDateForElSalvador } from "@/lib/dates/format";
 import { getTodayDayPasses } from "@/lib/day-passes-data";
 
@@ -20,6 +21,8 @@ export default async function DayPassesPage() {
           Registro rápido para personas que pagan solo entrada diaria, sin crear membresía mensual.
         </p>
       </div>
+
+      <FacialAccessDemo />
 
       <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_380px]">
         <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
