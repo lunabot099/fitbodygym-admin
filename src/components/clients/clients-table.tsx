@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { RenewMembershipForm } from "./renew-membership-form";
 import { formatDateForElSalvador } from "@/lib/dates/format";
 import { getMembershipUiStatus } from "@/lib/membership-status";
 import type { ClientWithMembership } from "@/lib/types";
@@ -56,6 +57,7 @@ export function ClientsTable({ clients }: ClientsTableProps) {
               <th className="px-4 py-3">Estado</th>
               <th className="px-4 py-3">Vence</th>
               <th className="px-4 py-3">Tiempo</th>
+              <th className="px-4 py-3">Acciones</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-neutral-200">
@@ -80,13 +82,16 @@ export function ClientsTable({ clients }: ClientsTableProps) {
                   <td className="px-4 py-3 text-neutral-600">
                     {client.current_membership?.plan_name ?? "-"}
                   </td>
+                  <td className="px-4 py-3">
+                    <RenewMembershipForm client={client} />
+                  </td>
                 </tr>
               );
             })}
 
             {filteredClients.length === 0 ? (
               <tr>
-                <td colSpan={6} className="px-4 py-10 text-center text-neutral-500">
+                <td colSpan={7} className="px-4 py-10 text-center text-neutral-500">
                   No encontramos clientes con esa búsqueda.
                 </td>
               </tr>
