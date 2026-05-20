@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useActionState, useMemo, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { createClientWithMembership } from "@/app/(dashboard)/clientes/actions";
+import { FacialEnrollmentDemo } from "@/components/clients/facial-enrollment-demo";
 import { addMonths, formatDateForElSalvador } from "@/lib/dates/format";
 
 const durationOptions = [
@@ -95,6 +96,8 @@ export function QuickClientForm() {
           <p className="mt-2 text-2xl font-bold text-neutral-950">{formatDateForElSalvador(expirationDate)}</p>
           <p className="mt-1 text-xs text-neutral-600">Se guardará internamente como {expirationDate} para Supabase.</p>
         </div>
+
+        <FacialEnrollmentDemo />
       </div>
 
       {state.message ? (
